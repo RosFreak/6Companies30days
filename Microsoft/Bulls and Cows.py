@@ -49,3 +49,25 @@ class Solution:
                 cows += 1
                 dic[guess[i]] -= 1
         return '{}A{}B'.format(bulls,cows)
+
+# new solution
+
+class Solution:
+    def getHint(self, secret: str, guess: str) -> str:
+        dic = []
+        di = []
+        n = len(secret)
+        for i in range(10):
+            dic.append(0)
+            di.append(0)
+        bulls = 0
+        cows = 0
+        for i in range(n):
+            if secret[i] == guess[i]:
+                bulls += 1
+            else:
+                dic[int(guess[i])] += 1
+                di[int(secret[i])] += 1
+        for i in range(10):
+            cows += min(dic[i],di[i])
+        return '{}A{}B'.format(bulls,cows)
